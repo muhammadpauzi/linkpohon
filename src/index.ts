@@ -8,7 +8,8 @@ import { initPassport } from './configs/passport.config';
 import Database from './configs/database.config';
 import flash from 'connect-flash';
 
-import authRoute from './app/auth/auth.route';
+import authRoutes from './app/auth/auth.route';
+import linkRoutes from './app/links/link.route';
 
 const PORT: number = Number(process.env.PORT) || 5000;
 const app: Application = express();
@@ -32,7 +33,8 @@ app.use(flash());
 
 initPassport(app);
 
-app.use('/', authRoute);
+app.use('/', authRoutes);
+app.use('/', linkRoutes);
 
 const main = async () => {
     try {

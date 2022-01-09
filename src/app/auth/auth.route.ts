@@ -7,7 +7,7 @@ const router: Router = Router();
 const authController: AuthController = new AuthController();
 
 router.get('/sign-in', ensureGuest, (req, res) => authController.signIn(req, res));
-// router.post('/sign-out', ensureAuth, signOut);
+router.post('/sign-out', ensureAuth, (req, res) => authController.signOut(req, res));
 
 router.post('/google', ensureGuest, passport.authenticate('google', { scope: ['profile', 'email'] }));
 router.get('/google/callback', ensureGuest,

@@ -33,14 +33,14 @@
                         </button>
                         <form action="/sign-out" method="post">
                             <button onclick="return confirm('Are you sure to sign out?')"
-                                class="bg-red-500 text-white font-bold rounded-md py-2 px-3 block focus:ring-red-500 focus:ring-offset-2 focus:ring-2 outline-none">Sign
+                                class="bg-red-500 text-white text-sm font-semibold py-3 focus:ring-2 ring-red-500 ring-offset-2 px-4 rounded hover:shadow-lg transition">Sign
                                 out</button>
                         </form>
                     </div>
                     {{else}}
                     <div class="flex space-x-1">
                         <a href="/sign-in"
-                            class="bg-purple-500 text-white font-bold rounded-md py-2 px-3 block focus:ring-purple-500 focus:ring-offset-2 focus:ring-2">Sign
+                            class="bg-purple-500 text-white text-sm font-semibold py-3 focus:ring-2 ring-purple-500 ring-offset-2 px-4 rounded hover:shadow-lg transition">Sign
                             in</a>
                     </div>
                     {{/if}}
@@ -63,7 +63,7 @@
                             </svg>
                         </div>
                         <div class="ml-2 mr-6 max-w-xs">
-                            <span class="font-semibold text-purple-500">{{successMessage}}</span>
+                            <span class="font-semibold text-green-500">{{successMessage}}</span>
                             {{!-- <span class="block text-gray-500">Anyone with a link can now view this file</span>
                             --}}
                         </div>
@@ -123,8 +123,7 @@
     </footer>
 
     {{!-- Main JS --}}
-    {{!--
-    <script src="/js/main.js" type="module"></script> --}}
+    <script src="/js/main.js" type="module"></script>
 </body>
 
 </html>
