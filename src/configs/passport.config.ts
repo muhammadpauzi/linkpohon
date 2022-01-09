@@ -2,7 +2,6 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import passport from 'passport';
 import { Application } from 'express';
 import User from '../app/users/user.entity';
-// import IPassportUser from '../interfaces/passport.interface';
 
 export const initPassport = (app: Application): void => {
     app.use(passport.initialize());
@@ -24,10 +23,9 @@ export const initPassport = (app: Application): void => {
             try {
                 let user = await User.findOne({ where: { google_id: newUser.google_id } });
 
-                if (!user)
-                    user = await User.create(newUser);
+                if (!user) user = await (await User.create(newUser)).save();
 
-                return done(null, user);
+                return done(null, user.google_id);
             } catch (error: any) {
                 console.log(error.message);
                 return done(error, undefined);
@@ -35,13 +33,13 @@ export const initPassport = (app: Application): void => {
         }
     ));
 
-    passport.serializeUser((user, done) => {
-        done(null, user);
+    passport.serializeUser((google_id, done) => {
+        done(null, google_id);
     });
 
-    passport.deserializeUser(async (_user: any, done) => {
+    passport.deserializeUser(async (google_id, done) => {
         try {
-            const user = await User.findOne({ where: { googleId: _user.google_id } });
+            const user = await User.findOne({ where: { google_id } });
             done(null, user);
         } catch (error) {
             done(error, null)

@@ -30,11 +30,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(flash());
 
-Database.connect();
 initPassport(app);
 
 app.use('/', authRoute);
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}...`);
-})
+const main = async () => {
+    try {
+        await Database.connect();
+        console.log("Database connected!");
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}...`);
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+main();

@@ -1,4 +1,5 @@
 import { createConnection, Connection } from 'typeorm';
+import User from '../app/users/user.entity';
 
 export default class Database {
     private static connection: Connection;
