@@ -1,5 +1,6 @@
 import { getNotificationComponent } from './components.js';
-import { hideNotif, notifGroup } from './elements.js';
+import { formCreateLink, hideNotif, notifGroup } from './elements.js';
+import { fetchData } from './utils.js';
 
 function handleHideNotif(e, element) {
     // 'element' is used for event from tag html
@@ -25,3 +26,35 @@ export const copyText = (TextToCopy) => {
 export const showNotification = (data = {}) => {
     notifGroup.innerHTML = getNotificationComponent(data);
 }
+
+
+formCreateLink.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const {title, description} = this;
+
+    const {res, data} = await fetchData({ 
+        url: '/', 
+        options: {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }, 
+            body: JSON.stringify({ title: title.value, description: description.value })
+        } 
+    });
+
+    if(res.status == 201){
+        showNotification({message: data.message});
+        title.value = "";
+        description.value = "";
+        title.nextElementSibling.textContent = "";
+        description.nextElementSibling.textContent = "";
+        this.classList.add('hidden');
+    }
+
+    if(res.status == 422){
+        showNotification({message: data.message});
+        title.nextElementSibling.textContent = data.errors.title;
+        description.nextElementSibling.textContent = data.errors.description;
+    }
+})
