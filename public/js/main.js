@@ -1,5 +1,5 @@
 import { getNotificationComponent } from './components.js';
-import { formCreateLink, hideNotif, notifGroup } from './elements.js';
+import { formCreateLink, hideNotif, newButton, notifGroup } from './elements.js';
 import { fetchData } from './utils.js';
 
 function handleHideNotif(e, element) {
@@ -57,4 +57,8 @@ formCreateLink.addEventListener('submit', async function(e) {
         title.nextElementSibling.textContent = data.errors.title;
         description.nextElementSibling.textContent = data.errors.description;
     }
+});
+
+newButton.addEventListener('click', function() {
+    formCreateLink.classList.toggle('hidden');
 })
