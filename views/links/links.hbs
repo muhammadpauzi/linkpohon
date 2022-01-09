@@ -1,0 +1,48 @@
+<div class="max-w-xl mx-auto py-20">
+    <div class="text-center mb-10">
+        <div class="rounded-full h-28 w-28 mb-5 mx-auto block overflow-hidden border-4 border-purple-200 shadow-lg">
+            <img src="{{ _user.image }}" alt="" class="block">
+        </div>
+        <h1 class="font-bold text-xl mb-2 text-purple-500 ">{{_user.name}}</h1>
+        <p class="text-gray-500 text-sm font-normal leading-relaxed">Lorem ipsum dolor sit amet consectetur, adipisicing
+            elit. Nam quasi a ipsum distinctio nobis et molestiae debitis non perspiciatis sapiente.</p>
+    </div>
+    <div class="mb-5 flex justify-between items-center">
+        <div>
+            {{#if user.isAuthenticated}}
+            <a href=""
+                class="bg-purple-500 text-white text-sm font-semibold py-3 focus:ring-2 ring-purple-500 ring-offset-2 px-4 rounded hover:shadow-lg transition">New</a>
+            {{/if}}
+        </div>
+        <div>
+            <a href=""
+                class="bg-purple-500 text-white text-sm font-semibold py-3 focus:ring-2 ring-purple-500 ring-offset-2 px-4 rounded hover:shadow-lg transition">My
+                Profile</a>
+        </div>
+    </div>
+    <div class="space-y-2">
+        <a href=""
+            class="block bg-white border border-purple-200 rounded px-3 py-4 focus:ring-2 ring-purple-500 ring-offset-2 transition">
+            <div class="mb-4">
+                <h2 class="text-purple-500 font-bold">My YouTube Link</h2>
+                <p class="text-sm text-gray-500 font-normal leading-relaxed mt-4">Lorem, ipsum dolor sit amet
+                    consectetur adipisicing elit. Doloribus voluptatum quod voluptas ipsum architecto perferendis iusto
+                    deleniti est blanditiis asperiores.</p>
+            </div>
+
+            <div class="text-sm text-gray-500">
+                <span>Visited : 10 Times</span>
+            </div>
+        </a>
+        <a href=""
+            class="block bg-white border border-purple-200 rounded px-3 py-4 focus:ring-2 ring-purple-500 ring-offset-2 transition">
+            <div class="mb-4">
+                <h2 class="text-purple-500 font-bold">My GitHub Link</h2>
+            </div>
+
+            <div class="text-sm text-gray-500">
+                <span>Visited : 10 Times</span>
+            </div>
+        </a>
+    </div>
+</div>
