@@ -10,7 +10,11 @@ export default class LinkController {
         const { username } = req.params;
         try {
             const user = await User.findOne({ where: { username } });
-            return renderWithUserDataAndFlash({ req, res, title: "Links | LinkPohon", path: 'links/links', data: { _user: user } }); // _user to avoid with object user from session/passport
+
+            if (user)
+                return renderWithUserDataAndFlash({ req, res, title: "Links | LinkPohon", path: 'links/links', data: { _user: user } }); // _user to avoid with object user from session/passport
+
+            return renderWithUserDataAndFlash({ req, res, title: "No user with the username | LinkPohon", path: '404' });
         } catch (error) {
             console.log(error);
         }
