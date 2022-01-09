@@ -7,5 +7,6 @@ const router: Router = Router();
 const linkController: LinkController = new LinkController();
 
 router.get('/', (req, res) => linkController.index(req, res));
+router.get('/:username', (req, res) => linkController.links(req, res));
 
 export default router;

@@ -16,6 +16,7 @@ export const initPassport = (app: Application): void => {
             const newUser = {
                 google_id: id,
                 name: displayName,
+                username: emails && emails[0].value.split('@')[0],
                 image: photos && photos[0].value,
                 email: emails && emails[0].value
             };

@@ -1,6 +1,6 @@
-import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BaseEntity} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BaseEntity } from "typeorm";
 
-@Entity({name: 'users'})
+@Entity({ name: 'users' })
 export default class User extends BaseEntity {
 
     @PrimaryGeneratedColumn()
@@ -35,6 +35,14 @@ export default class User extends BaseEntity {
         nullable: false
     })
     email!: string;
+
+    @Column({
+        type: "varchar",
+        length: 255,
+        unique: true,
+        nullable: false
+    })
+    username!: string;
 
     @CreateDateColumn()
     createdAt!: Date;
