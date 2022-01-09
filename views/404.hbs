@@ -1,14 +1,14 @@
 <div class="max-w-xl mx-auto py-16 text-center">
-    <h1 class="text-6xl font-light text-green-500 mb-5">404</h1>
+    <h1 class="text-6xl font-light text-purple-500 mb-5">404</h1>
     <h1 class="text-3xl font-bold text-gray-800 mb-2">Page Not Found</h1>
     <p class="text-gray-600 mb-6 text-sm">The page that you want to visit is not found.</p>
     {{#if user.isAuthenticated}}
     <a href="/"
-        class="bg-green-500 text-white font-bold rounded-md py-2 text-sm px-3 focus:ring-green-500 focus:ring-offset-2 focus:ring-2 mx-auto">Back
-        to Dashboard</a>
+        class="bg-purple-500 text-white text-sm font-semibold py-3 focus:ring-2 ring-purple-500 ring-offset-2 px-4 rounded hover:shadow-lg transition">Back
+        to Home</a>
     {{else}}
     <a href="/sign-in"
-        class="bg-green-500 text-white font-bold rounded-md py-2 text-sm px-3 focus:ring-green-500 focus:ring-offset-2 focus:ring-2 mx-auto">Go
+        class="bg-purple-500 text-white text-sm font-semibold py-3 focus:ring-2 ring-purple-500 ring-offset-2 px-4 rounded hover:shadow-lg transition">Go
         to Sign in page</a>
     {{/if}}
 </div>
