@@ -40,7 +40,7 @@ const showLinks = async () =>{
 
 formCreateLink.addEventListener('submit', async function(e) {
     e.preventDefault();
-    const {title, description} = this;
+    const {title, description, url} = this;
 
     const {res, data} = await fetchData({ 
         url: '/', 
@@ -49,7 +49,7 @@ formCreateLink.addEventListener('submit', async function(e) {
             headers: {
                 "Content-Type": "application/json"
             }, 
-            body: JSON.stringify({ title: title.value, description: description.value })
+            body: JSON.stringify({ title: title.value, description: description.value, url: url.value })
         } 
     });
 
@@ -57,16 +57,19 @@ formCreateLink.addEventListener('submit', async function(e) {
         showNotification({message: data.message});
         title.value = "";
         description.value = "";
+        url.value = "";
         title.nextElementSibling.textContent = "";
         description.nextElementSibling.textContent = "";
+        url.nextElementSibling.textContent = "";
         this.classList.add('hidden');
         showLinks();
     }
 
     if(res.status == 422){
-        showNotification({message: data.message});
+        showNotification({message: data.message, type: "error"});
         title.nextElementSibling.textContent = data.errors.title;
         description.nextElementSibling.textContent = data.errors.description;
+        url.nextElementSibling.textContent = data.errors.url;
     }
 });
 

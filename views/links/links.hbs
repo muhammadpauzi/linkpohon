@@ -24,13 +24,21 @@
     {{#if user.isAuthenticated}}
     <div class="py-2">
         <div>
-            <form action="" method="post" id="formCreateLink" class="hidden p-5">
+            <form action="" method="post" id="formCreateLink" class="hidden p-5" novalidate>
                 <h2 class="text-purple-500 font-medium mb-4 block text-xl">Create new link</h2>
                 <div class="mb-3">
                     <label for="title" class="block text-sm font-medium text-gray-700 mb-2">
                         Title <sup class="text-red-500">*</sup>
                     </label>
                     <input type="text" name="title" id="title"
+                        class="focus:ring-purple-500 focus:border-purple-500 outline-none appearance-none block w-full text-md p-3 rounded-none border-2 rounded-md sm:text-sm border-gray-200 transition">
+                    <p class="mt-2 text-sm text-red-500"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="url" class="block text-sm font-medium text-gray-700 mb-2">
+                        URL
+                    </label>
+                    <input type="url" name="url" id="url"
                         class="focus:ring-purple-500 focus:border-purple-500 outline-none appearance-none block w-full text-md p-3 rounded-none border-2 rounded-md sm:text-sm border-gray-200 transition">
                     <p class="mt-2 text-sm text-red-500"></p>
                 </div>
@@ -51,16 +59,16 @@
 
     <div class="space-y-2" id="links">
         {{#each _user.links}}
-        <a href=""
+        <a href="{{url}}" target="_blank"
             class="block bg-white border border-purple-200 rounded px-3 py-4 focus:ring-2 ring-purple-500 ring-offset-2 transition">
             <div class="mb-4">
                 <h2 class="text-purple-500 font-bold">{{title}}</h2>
                 <p class="text-sm text-gray-500 font-normal leading-relaxed mt-4">{{description}}</p>
             </div>
 
-            <div class="text-sm text-gray-500">
+            {{!-- <div class="text-sm text-gray-500">
                 <span>Visited : 10 Times</span>
-            </div>
+            </div> --}}
         </a>
         {{else}}
         <p class="text-center font-semibold text-red-500 py-10">Links does not exist.</p>

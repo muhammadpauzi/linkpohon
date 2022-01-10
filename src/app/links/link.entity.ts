@@ -1,12 +1,10 @@
-import { IsNotEmpty, MaxLength, MinLength, validate, } from "class-validator";
+import { IsNotEmpty, IsUrl, isURL, MaxLength, MinLength, validate, } from "class-validator";
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BaseEntity, ManyToOne } from "typeorm";
 import { buildErrorValidation } from "../../helpers/validator.helper";
 import User from "../users/user.entity";
 
 @Entity({
-    name: 'links', orderBy: {
-        createdAt: "ASC"
-    }
+    name: 'links'
 })
 export default class Link extends BaseEntity {
 
@@ -21,6 +19,15 @@ export default class Link extends BaseEntity {
         nullable: false
     })
     title!: string;
+
+    @IsUrl()
+    @IsNotEmpty()
+    @Column({
+        type: "varchar",
+        length: 500,
+        nullable: false
+    })
+    url!: string;
 
     @MaxLength(500)
     @Column({
@@ -48,6 +55,7 @@ export const validateLink = async (body: any): Promise<boolean | object> => {
     let link = new Link();
     link.title = body.title;
     link.description = body.description;
+    link.url = body.url;
     const errors = await validate(link);
     return errors.length > 0 ? buildErrorValidation(errors) : true;
 }

@@ -13,6 +13,9 @@ export default class LinkController {
         try {
             const user = await User.findOne({
                 where: { username },
+                order: {
+                    createdAt: "ASC"
+                },
                 relations: ['links']
             });
 
@@ -31,11 +34,11 @@ export default class LinkController {
 
     public async create(req: Request, res: Response) {
         try {
-            const { title, description } = req.body;
+            const { title, url, description } = req.body;
             const { id: userId } = <{ id: number }>req.user;
-            const errors = await validateLink({ title, description });
+            const errors = await validateLink({ title, url, description });
             if (errors === true) {
-                const link = await (await Link.create({ title, description, userId })).save();
+                const link = await (await Link.create({ title, url, description, userId })).save();
                 return res.status(201).json({ message: "Link has successfully created.", data: link });
             } else {
                 return res.status(422).json({ message: "Data does not valid!", errors });
