@@ -1,8 +1,13 @@
 import { IsNotEmpty, MaxLength, MinLength, validate, } from "class-validator";
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BaseEntity } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BaseEntity, ManyToOne } from "typeorm";
 import { buildErrorValidation } from "../../helpers/validator.helper";
+import User from "../users/user.entity";
 
-@Entity({ name: 'links' })
+@Entity({
+    name: 'links', orderBy: {
+        createdAt: "ASC"
+    }
+})
 export default class Link extends BaseEntity {
 
     @PrimaryGeneratedColumn()
@@ -25,6 +30,12 @@ export default class Link extends BaseEntity {
         default: ""
     })
     description!: string;
+
+    @Column()
+    userId!: number;
+
+    @ManyToOne(() => User, user => user.links, { onDelete: "CASCADE" })
+    user!: User;
 
     @CreateDateColumn()
     createdAt!: Date;

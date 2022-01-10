@@ -7,6 +7,20 @@ export const getSpinnerComponent = ({ isSmall = false, noPadding = false }) => {
     </div>`;
 }
 
+export const getLinkComponent = ({title, description} = {title: "", description: ""}) => {
+    return `<a href=""
+        class="block bg-white border border-purple-200 rounded px-3 py-4 focus:ring-2 ring-purple-500 ring-offset-2 transition">
+        <div class="mb-4">
+            <h2 class="text-purple-500 font-bold">${title}</h2>
+            <p class="text-sm text-gray-500 font-normal leading-relaxed mt-4">${description}</p>
+        </div>
+
+        <div class="text-sm text-gray-500">
+            <span>Visited : 10 Times</span>
+        </div>
+    </a>`;
+}
+
 export const getTextMessageComponent = (message = "", color = "red") => {
     return `<div class="py-10"><p class="text-center text-${color}-500 font-medium">${message}</p></div>`;
 }

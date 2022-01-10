@@ -1,5 +1,5 @@
-import { getNotificationComponent } from './components.js';
-import { formCreateLink, hideNotif, newButton, notifGroup } from './elements.js';
+import { getLinkComponent, getNotificationComponent } from './components.js';
+import { formCreateLink, hideNotif, linksGroup, newButton, notifGroup } from './elements.js';
 import { fetchData } from './utils.js';
 
 function handleHideNotif(e, element) {
@@ -27,6 +27,16 @@ export const showNotification = (data = {}) => {
     notifGroup.innerHTML = getNotificationComponent(data);
 }
 
+const showLinks = async () =>{
+    const {res, data} = await fetchData({url: window.location.href, options: {headers: {"Content-Type": "application/json"}}});
+    let links = '';
+    console.log(data);
+    data.data.links.map(link => {
+        links += getLinkComponent(link);
+    });
+    linksGroup.innerHTML = links;
+}
+
 
 formCreateLink.addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -50,6 +60,7 @@ formCreateLink.addEventListener('submit', async function(e) {
         title.nextElementSibling.textContent = "";
         description.nextElementSibling.textContent = "";
         this.classList.add('hidden');
+        showLinks();
     }
 
     if(res.status == 422){
@@ -61,4 +72,4 @@ formCreateLink.addEventListener('submit', async function(e) {
 
 newButton.addEventListener('click', function() {
     formCreateLink.classList.toggle('hidden');
-})
+});

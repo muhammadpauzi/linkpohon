@@ -49,29 +49,21 @@
     </div>
     {{/if}}
 
-    <div class="space-y-2">
+    <div class="space-y-2" id="links">
+        {{#each _user.links}}
         <a href=""
             class="block bg-white border border-purple-200 rounded px-3 py-4 focus:ring-2 ring-purple-500 ring-offset-2 transition">
             <div class="mb-4">
-                <h2 class="text-purple-500 font-bold">My YouTube Link</h2>
-                <p class="text-sm text-gray-500 font-normal leading-relaxed mt-4">Lorem, ipsum dolor sit amet
-                    consectetur adipisicing elit. Doloribus voluptatum quod voluptas ipsum architecto perferendis iusto
-                    deleniti est blanditiis asperiores.</p>
+                <h2 class="text-purple-500 font-bold">{{title}}</h2>
+                <p class="text-sm text-gray-500 font-normal leading-relaxed mt-4">{{description}}</p>
             </div>
 
             <div class="text-sm text-gray-500">
                 <span>Visited : 10 Times</span>
             </div>
         </a>
-        <a href=""
-            class="block bg-white border border-purple-200 rounded px-3 py-4 focus:ring-2 ring-purple-500 ring-offset-2 transition">
-            <div class="mb-4">
-                <h2 class="text-purple-500 font-bold">My GitHub Link</h2>
-            </div>
-
-            <div class="text-sm text-gray-500">
-                <span>Visited : 10 Times</span>
-            </div>
-        </a>
+        {{else}}
+        <p class="text-center font-semibold text-red-500 py-10">Links does not exist.</p>
+        {{/each}}
     </div>
 </div>

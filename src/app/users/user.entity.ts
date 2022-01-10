@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BaseEntity } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BaseEntity, OneToMany } from "typeorm";
+import Link from "../links/link.entity";
 
 @Entity({ name: 'users' })
 export default class User extends BaseEntity {
@@ -43,6 +44,9 @@ export default class User extends BaseEntity {
         nullable: false
     })
     username!: string;
+
+    @OneToMany(() => Link, link => link.user)
+    links!: Link[]
 
     @CreateDateColumn()
     createdAt!: Date;
