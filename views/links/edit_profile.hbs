@@ -1,0 +1,35 @@
+<div class="max-w-xl mx-auto py-10">
+    <div class="text-center mb-10">
+        <div class="mb-5 flex items-center justify-center">
+            <img class="h-28 w-28 rounded-full border-4 border-purple-200 shadow-lg" src="{{ _user.image }}" alt=""
+                class="block">
+        </div>
+        <h1 class="font-bold text-xl mb-2 text-purple-500 ">{{_user.name}}</h1>
+        <form action="" method="post" class="text-left p-5" novalidate>
+            <h2 class="text-purple-500 font-medium mb-4 block text-xl">Update Profile</h2>
+            <div class="mb-3">
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                    Name <sup class="text-red-500">*</sup>
+                </label>
+                <input type="text" name="name" id="name" value="{{ _user.name }}"
+                    class="focus:ring-purple-500 focus:border-purple-500 outline-none appearance-none block w-full text-md p-3 rounded-none border-2 rounded-md sm:text-sm border-gray-200 transition">
+                {{#if errors.name}}
+                <p class="mt-2 text-sm text-red-500">{{ errors.name }}</p>
+                {{/if}}
+            </div>
+            <div class="mb-3">
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                    Description <sup class="text-red-500">*</sup>
+                </label>
+                <textarea name="description" id="description"
+                    class="focus:ring-purple-500 focus:border-purple-500 outline-none appearance-none block w-full text-md p-3 rounded-none border-2 rounded-md sm:text-sm border-gray-200 transition">{{_user.description}}</textarea>
+                {{#if errors.description}}
+                <p class="mt-2 text-sm text-red-500">{{ errors.description }}</p>
+                {{/if}}
+            </div>
+            <button id="update"
+                class="bg-purple-500 text-white text-sm font-semibold py-3 focus:ring-2 ring-purple-500 ring-offset-2 px-4 rounded hover:shadow-lg transition">Update
+                Profile</button>
+        </form>
+    </div>
+</div>

@@ -5,8 +5,9 @@
                 class="block">
         </div>
         <h1 class="font-bold text-xl mb-2 text-purple-500 ">{{_user.name}}</h1>
-        <p class="text-gray-500 text-sm font-normal leading-relaxed">Lorem ipsum dolor sit amet consectetur, adipisicing
-            elit. Nam quasi a ipsum distinctio nobis et molestiae debitis non perspiciatis sapiente.</p>
+        {{#if _user.description}}
+        <p class="text-gray-500 text-sm font-normal leading-relaxed">{{ _user.description }}</p>
+        {{/if}}
     </div>
     <div class="mb-5 flex justify-between items-center">
         <div>
@@ -16,8 +17,9 @@
             {{/if}}
         </div>
         <div>
-            <a href=""
-                class="bg-purple-500 text-white text-sm font-semibold py-3 focus:ring-2 ring-purple-500 ring-offset-2 px-4 rounded hover:shadow-lg transition">My
+            <a href="/{{_user.username}}/profile"
+                class="bg-purple-500 text-white text-sm font-semibold py-3 focus:ring-2 ring-purple-500 ring-offset-2 px-4 rounded hover:shadow-lg transition">{{#if
+                user.isAuthenticated}}My{{/if}}
                 Profile</a>
         </div>
     </div>

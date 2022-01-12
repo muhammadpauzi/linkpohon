@@ -8,12 +8,15 @@ import { initPassport } from './configs/passport.config';
 import Database from './configs/database.config';
 import flash from 'connect-flash';
 
+import handlebarsHelpers from './helpers/handlebars.helper';
+
 import authRoutes from './app/auth/auth.route';
 import linkRoutes from './app/links/link.route';
+import userRoutes from './app/users/user.route';
 
 const PORT: number = Number(process.env.PORT) || 5000;
 const app: Application = express();
-const viewInstance = exphbs.create({ defaultLayout: 'main', extname: '.hbs' });
+const viewInstance = exphbs.create({ defaultLayout: 'main', extname: '.hbs', helpers: handlebarsHelpers });
 
 // handlebars
 app.engine('.hbs', viewInstance.engine);
@@ -35,6 +38,7 @@ initPassport(app);
 
 app.use('/', authRoutes);
 app.use('/', linkRoutes);
+app.use('/', userRoutes);
 
 const main = async () => {
     try {

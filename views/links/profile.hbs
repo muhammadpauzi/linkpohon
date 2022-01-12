@@ -1,0 +1,31 @@
+<div class="max-w-xl mx-auto py-10">
+    <div class="text-center mb-10">
+        <div class="mb-5 flex items-center justify-center">
+            <img class="h-28 w-28 rounded-full border-4 border-purple-200 shadow-lg" src="{{ _user.image }}" alt=""
+                class="block">
+        </div>
+        <h1 class="font-bold text-xl mb-2 text-purple-500 ">{{_user.name}}</h1>
+        <div class="text-gray-500 text-sm font-normal leading-relaxed">
+            {{#if _user.description}}
+            <small class="text-black font-bold mb-2 mt-4 block uppercase">Description</small>
+            <p>{{_user.description}}</p>
+            {{/if}}
+            <small class="text-black font-bold mb-2 mt-4 block uppercase">Email</small>
+            <p>{{_user.email}}</p>
+
+            <small class="text-black font-bold mb-2 mt-4 block uppercase">Registered at</small>
+            <p>{{formatDate _user.createdAt}}</p>
+
+            <small class="text-black font-bold mb-2 mt-4 block uppercase">Modified at</small>
+            <p>{{formatDate _user.updatedAt}}</p>
+        </div>
+
+        {{#if user.isAuthenticated }}
+        <div class="flex items-center justify-end">
+            <a href="/{{_user.username}}/profile/edit"
+                class="bg-purple-500 text-white text-sm font-semibold py-3 focus:ring-2 ring-purple-500 ring-offset-2 px-4 rounded hover:shadow-lg transition">Edit
+                Profile</a>
+        </div>
+        {{/if}}
+    </div>
+</div>
