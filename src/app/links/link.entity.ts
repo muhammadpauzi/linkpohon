@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsUrl, isURL, MaxLength, MinLength, validate, } from "class-validator";
+import { IsNotEmpty, IsUrl, MaxLength, MinLength, validate, } from "class-validator";
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BaseEntity, ManyToOne } from "typeorm";
 import { buildErrorValidation } from "../../helpers/validator.helper";
 import User from "../users/user.entity";

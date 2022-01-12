@@ -21,7 +21,9 @@
         </div>
 
         {{#if user.isAuthenticated }}
-        <div class="flex items-center justify-end">
+        <div class="flex items-center justify-between my-5">
+            <a href="/{{_user.username}}"
+                class="bg-purple-200 text-purple-500 text-sm font-semibold py-3 focus:ring-2 ring-purple-500 ring-offset-2 px-4 rounded hover:shadow-lg transition">Back</a>
             <a href="/{{_user.username}}/profile/edit"
                 class="bg-purple-500 text-white text-sm font-semibold py-3 focus:ring-2 ring-purple-500 ring-offset-2 px-4 rounded hover:shadow-lg transition">Edit
                 Profile</a>
